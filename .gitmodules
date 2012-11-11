@@ -1,0 +1,3 @@
+[submodule "public/JSTemplate"]
+	path = public/JSTemplate
+	url = git://github.com/FCO/JSTemplate.git
