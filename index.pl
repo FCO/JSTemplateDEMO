@@ -6,7 +6,8 @@ get "/" => "index";
 
 post "/search" => sub {
 	my $self = shift;
-	$self->render_json({list => [{name => "test1"}, {name => "test2"}, {name => "test3"}]});
+	my $search = $self->param("search") || "search";
+	$self->render_json({list => [{name => "${search}1"}, {name => "${search}2"}, {name => "${search}3"}]});
 };
 
 app->start;
@@ -19,7 +20,7 @@ __DATA__
 	</head>
 	<body>
 		<script src="JSTemplate/Template.js"></script>
-		<form onsubmit="Template.renderOn('list.jstmpl', 'POST /search', 'result'); return false">
+		<form onsubmit="Template.renderOn('list.jstmpl', ['POST /search', this], 'result'); return false">
 			<input name="search">
 			<input type="submit" value="OK">
 		</form>
