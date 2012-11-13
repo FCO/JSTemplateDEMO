@@ -1,5 +1,5 @@
 <ul>
 <% for(var i = 0; i < list.length; i++) { %>
-	<li><%= list[i].name %>
+	<li><a href="#" onclick="Template.renderOn('show.jstmpl', 'GET /ad/<%= list[i].id %>', 'result')"><%= list[i].title %></a>
 <% } %>
 </ul>
