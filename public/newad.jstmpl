@@ -1,0 +1,20 @@
+<form onsubmit="Template.renderOn('list.jstmpl', ['PUT /ad', this], 'result'); return false">
+	<table>
+		<tr>
+			<td>Title</td>
+			<td><input name="title" value="<%= title %>"></td>
+		</tr>
+		<tr>
+			<td>Body</td>
+			<td><textarea name="body"><%= body %></textarea></td>
+		</tr>
+		<tr>
+			<td>Price</td>
+			<td><input name="price" value="<%= price %>"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" value="OK"></td>
+		</tr>
+	</table>
+</form>
