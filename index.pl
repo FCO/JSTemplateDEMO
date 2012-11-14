@@ -41,15 +41,16 @@ put "/ad" => sub {
 	my $query = $db->prepare($strquery);
 	$query->execute($self->param("title"), $self->param("body"), $self->param("price"));
 	$self->redirect_to("search");
-	#my $strquery = "select id, title from ads";
-	#app->log->debug($strquery);
-	#$query = $db->prepare($strquery);
-	#$query->execute;
-	#my @ads;
-	#my $line;
-	#push(@ads, $line) while $line = $query->fetchrow_hashref; 
-	#app->log->debug(Dumper(\@ads));
-	#$self->render_json({list => \@ads});
+};
+
+post "/ad/:id" => sub {
+	my $self = shift;
+	my $id   = $self->param("id");
+	my $strquery = "update ads set title=?, body=?, price=? where id = ?";
+	app->log->debug($strquery);
+	my $query = $db->prepare($strquery);
+	$query->execute($self->param("title"), $self->param("body"), $self->param("price"), $id);
+	$self->redirect_to("search");
 };
 
 app->start;
@@ -61,7 +62,7 @@ __DATA__
 	<head>
 	</head>
 	<body>
-		<a href="#" onclick='Template.renderOn("newad.jstmpl", {"title":"","body":"","price":""}, "result"); return false'>Create an Ad</a>
+		<a href="#" onclick='Template.stash.url = "PUT /ad"; Template.renderOn("newad.jstmpl", {"title":"","body":"","price":""}, "result"); return false'>Create an Ad</a>
 		<script src="JSTemplate/Template.js"></script>
 		<form onsubmit="Template.renderOn('list.jstmpl', ['POST /search', this], 'result'); return false">
 			<input name="search">

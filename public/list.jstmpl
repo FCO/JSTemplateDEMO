@@ -1,5 +1,8 @@
-<ul>
+<table>
 <% for(var i = 0; i < list.length; i++) { %>
-	<li><a href="#" onclick="Template.renderOn('show.jstmpl', 'GET /ad/<%= list[i].id %>', 'result')"><%= list[i].title %></a>
+	<tr>
+		<td><a href="#" onclick="Template.renderOn('show.jstmpl', 'GET /ad/<%= list[i].id %>', 'result')"><%= list[i].title %></a></td>
+		<td><a href="#" onclick="Template.stash.url = 'POST /ad/<%= list[i].id %>'; Template.renderOn('newad.jstmpl', 'GET /ad/<%= list[i].id %>', 'result')">[edit]</a></td>
+	</tr>
 <% } %>
-</ul>
+</table>
