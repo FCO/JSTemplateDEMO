@@ -53,6 +53,16 @@ post "/ad/:id" => sub {
 	$self->redirect_to("search");
 };
 
+del "/ad/:id" => sub {
+	my $self = shift;
+	my $id   = $self->param("id");
+	my $strquery = "delete from ads where id = ?";
+	app->log->debug($strquery);
+	my $query = $db->prepare($strquery);
+	$query->execute($id);
+	$self->redirect_to("search");
+};
+
 app->start;
 
 __DATA__
