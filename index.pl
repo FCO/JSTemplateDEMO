@@ -12,10 +12,16 @@ get "/" => "index";
 any "/search" => sub {
 	my $self = shift;
 	my $search = $self->param("search");
-	my $strquery = "select id, title from ads" . ($search ? " where title like '%$search%'" : "");
+	my $min = $self->param("min");
+	my $max = $self->param("max");
+	my $where;
+	$where .= "title like '%$search%'" if $search;
+	$where .= "price >= ?" if $min;
+	$where .= "price <= ?" if $max;
+	my $strquery = "select id, title from ads" . ($where ? " where $where" : "");
 	app->log->debug($strquery);
 	my $query = $db->prepare($strquery);
-	$query->execute;
+	$query->execute(grep {$_} $min, $max);
 	my @ads;
 	my $line;
 	push(@ads, $line) while $line = $query->fetchrow_hashref; 
@@ -75,9 +81,29 @@ __DATA__
 		<a href="#" onclick='Template.stash.url = "PUT /ad"; Template.renderOn("newad.jstmpl", {"title":"","body":"","price":""}, "result"); return false'>Create an Ad</a>
 		<script src="JSTemplate/Template.js"></script>
 		<form onsubmit="Template.renderOn('list.jstmpl', ['POST /search', this], 'result'); return false">
-			<label for="search">Search:</label>
-			<input id="search" name="search">
-			<input type="submit" value="OK">
+			<table border=1>
+				<tr>
+					<th>Search</th>
+				</tr>
+				<tr>
+					<td>Title:</td>
+					<td><input id="search" name="search"></td>
+				</tr>
+				<tr>
+					<th>Price:</th>
+				</tr>
+				<tr>
+					<td><label for="min">Min:</label></td>
+					<td><input id="min" name="min"></td>
+				</tr>
+				<tr>
+					<td><label for="max">Max:</label></td>
+					<td><input id="max" name="max"></td>
+				</tr>
+				<tr>
+					<td colspan=2><input type="submit" value="OK"></td>
+				</tr>
+			</table>
 		</form>
 		<div id="result">
 		</div>
