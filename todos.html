@@ -2,10 +2,17 @@
 	<body>
 		<style>
 			#todos {
+				text-align:	center;
 				border:	1px solid black;
 			}
 			div#botton {
-				vertical-align:	right;
+				text-align:	right;
+				width: 200px;
+			}
+			div#app {
+				text-align:	center;
+				border:	1px solid black;
+				width: 200px;
 			}
 		</style>
 		<script src="public/JSTemplate/Template.js"></script>
@@ -13,17 +20,17 @@
 			<tr id="todo">
 				<td><input type="checkbox"<% if(checked) { %> checked="checked"<% } %>></td>
 				<td><input value="<%= text %>"></td>
-				<td><a href="#" onclick="this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement)">x</a></td>
+				<td><a href="javascript:void(0)" onclick="this.parentElement.parentElement.removeChild(this.parentElement)">x</a></td>
 			</tr>
 		</script>
 		<div id=app>
 			<form name="todos">
 				<table id="todos">
-					Todos:<BR />
+					Todos:<br />
 				</table>
 			</form>
 			<div id="botton">
-				<a class="button" href="#" onclick="Template.renderOn('todo', {checked: false, text: ''}, 'APPEND todos')">+</a>
+				<a class="button" href="javascript:void(0)" onclick="Template.renderOn('todo', {checked: false, text: ''}, 'APPEND todos')">+</a>
 			</div>
 		</div>
 	</body>
