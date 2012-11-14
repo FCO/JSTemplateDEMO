@@ -82,27 +82,31 @@ __DATA__
 		<script src="JSTemplate/Template.js"></script>
 		<form onsubmit="Template.renderOn('list.jstmpl', ['POST /search', this], 'result'); return false">
 			<table border=1>
-				<tr>
-					<th>Search</th>
-				</tr>
-				<tr>
-					<td>Title:</td>
-					<td><input id="search" name="search"></td>
-				</tr>
-				<tr>
-					<th>Price:</th>
-				</tr>
-				<tr>
-					<td><label for="min">Min:</label></td>
-					<td><input id="min" name="min"></td>
-				</tr>
-				<tr>
-					<td><label for="max">Max:</label></td>
-					<td><input id="max" name="max"></td>
-				</tr>
-				<tr>
-					<td colspan=2><input type="submit" value="OK"></td>
-				</tr>
+				<thead>
+					<tr>
+						<th>Search</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Title:</td>
+						<td><input id="search" name="search"></td>
+					</tr>
+					<tr>
+						<th>Price:</th>
+					</tr>
+					<tr>
+						<td><label for="min">Min:</label></td>
+						<td><input id="min" name="min"></td>
+					</tr>
+					<tr>
+						<td><label for="max">Max:</label></td>
+						<td><input id="max" name="max"></td>
+					</tr>
+					<tr>
+						<td colspan=2><input type="submit" value="OK"></td>
+					</tr>
+				</tbody>
 			</table>
 		</form>
 		<div id="result">

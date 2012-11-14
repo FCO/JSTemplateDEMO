@@ -1,0 +1,28 @@
+<html>
+	<body>
+		<style>
+			#todos {
+				border:	1px solid black;
+			}
+			div#botton {
+				vertical-align:	right;
+			}
+		</style>
+		<script src="public/JSTemplate/Template.js"></script>
+		<script type="text/jstmpl" id="todo">
+			<tr id="todo">
+				<td><input type="checkbox"<% if(checked) { %> checked="checked"<% } %>></td>
+				<td><input value="<%= text %>"></td>
+				<td><a href="#" onclick="this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement)">x</a></td>
+			</tr>
+		</script>
+		<div id=app>
+			<table id="todos">
+				Todos:<BR />
+			</table>
+			<div id="botton">
+				<a class="button" href="#" onclick="Template.renderOn('todo', {checked: false, text: ''}, 'APPEND todos')">+</a>
+			</div>
+		</div>
+	</body>
+</html>
