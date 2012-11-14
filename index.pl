@@ -71,7 +71,7 @@ __DATA__
 <html>
 	<head>
 	</head>
-	<body>
+	<body onload="Template.renderOn('list.jstmpl', 'POST /search', 'result')">
 		<a href="#" onclick='Template.stash.url = "PUT /ad"; Template.renderOn("newad.jstmpl", {"title":"","body":"","price":""}, "result"); return false'>Create an Ad</a>
 		<script src="JSTemplate/Template.js"></script>
 		<form onsubmit="Template.renderOn('list.jstmpl', ['POST /search', this], 'result'); return false">
