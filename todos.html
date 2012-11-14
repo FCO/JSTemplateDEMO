@@ -2,17 +2,45 @@
 	<body>
 		<style>
 			#todos {
+				background-color: white;
 				text-align:	center;
 				border:	1px solid black;
+				width: 100%;
+				border-radius: 15px;
+				padding: 10px;
 			}
 			div#botton {
+				position: relative;
 				text-align:	right;
+				vertical-align: middle;
 				width: 200px;
 			}
 			div#app {
+				background: url("http://www.1stwebdesigner.com/wp-content/uploads/2011/03/leather-black-texture4.jpg");
 				text-align:	center;
 				border:	1px solid black;
 				width: 200px;
+				padding: 5px;
+				border-radius: 5px;
+			}
+			.button {
+				background-color: white;
+				border-radius: 5px;
+				border:	1px solid black;
+				display: block;
+				width: 20px;
+				height: 20px;
+				text-align: center;
+				vertical-align: middle;
+				cursor: pointer;
+				position: absolute;
+				right: 5px;
+				bottom: 5px;
+			}
+			.remove {
+				text-decoration: none;
+				font-family: Arial;
+				color: red;
 			}
 		</style>
 		<script src="public/JSTemplate/Template.js"></script>
@@ -20,17 +48,20 @@
 			<tr id="todo">
 				<td><input type="checkbox"<% if(checked) { %> checked="checked"<% } %>></td>
 				<td><input value="<%= text %>"></td>
-				<td><a href="javascript:void(0)" onclick="this.parentElement.parentElement.removeChild(this.parentElement)">x</a></td>
+				<td><a class="remove" href="javascript:void(0)" onclick="this.parentElement.parentElement.removeChild(this.parentElement)">x</a></td>
 			</tr>
 		</script>
-		<div id=app>
+		<div id="app">
 			<form name="todos">
 				<table id="todos">
-					Todos:<br />
+					<th>Todos:</th><br />
 				</table>
 			</form>
 			<div id="botton">
-				<a class="button" href="javascript:void(0)" onclick="Template.renderOn('todo', {checked: false, text: ''}, 'APPEND todos')">+</a>
+				<br /> <br />
+				<div class="button" onclick="Template.renderOn('todo', {checked: false, text: ''}, 'APPEND todos')">
+					+
+				</div>
 			</div>
 		</div>
 	</body>
