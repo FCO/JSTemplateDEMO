@@ -2,7 +2,7 @@
 <% for(var i = 0; i < list.length; i++) { %>
 	<tr>
 		<td><a href="#" onclick="Template.renderOn('show.jstmpl', GET('/ad/<%= list[i].id %>'), 'result')"><%= list[i].title %></a></td>
-		<td><a href="#" onclick="Template.renderOn('newad.jstmpl', GET('/ad/<%= list[i].id %>').setDefaults({url: 'POST /ad/<%= list[i].id %>'}), 'result')">[edit]</a></td>
+		<td><a href="#" onclick="Template.renderOn('newad.jstmpl', GET('/ad/<%= list[i].id %>').setDefaults({url: '/ad/<%= list[i].id %>', method: 'POST'}), 'result')">[edit]</a></td>
 		<td><a href="#" onclick="Template.renderOn('list.jstmpl', DELETE('/ad/<%= list[i].id %>'), 'result')">[remove]</a></td>
 	</tr>
 <% } %>
