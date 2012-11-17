@@ -77,10 +77,10 @@ __DATA__
 <html>
 	<head>
 	</head>
-	<body onload="Template.renderOn('list.jstmpl', 'POST /search', 'result')">
-		<a href="#" onclick='Template.stash.url = "PUT /ad"; Template.renderOn("newad.jstmpl", {"title":"","body":"","price":""}, "result"); return false'>Create an Ad</a>
+	<body onload="Template.renderOn('list.jstmpl', POST('/search').cached(30), 'result')">
+		<a href="#" onclick='Template.renderOn("newad.jstmpl", {"url":"/ad","method":"PUT","title":"","body":"","price":""}, "result"); return false'>Create an Ad</a>
 		<script src="JSTemplate/Template.js"></script>
-		<form onsubmit="Template.renderOn('list.jstmpl', ['POST /search', this], 'result'); return false">
+		<form onsubmit="Template.renderOn('list.jstmpl', POST('/search', FORM(this)).cached(30), 'result'); return false">
 			<table border=1>
 				<thead>
 					<tr>
