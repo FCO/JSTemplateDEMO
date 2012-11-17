@@ -4,6 +4,10 @@ use DBI;
 use Data::Dumper;
 #use Mojolicious::Plugin::Mongodb;
 
+if(not -f "./public/JSTemplate/Template.js") {
+	die "Please, run 'git submodule init' and 'git submodule update'";
+}
+
 my $dbfile	= 	"./demo.db";
 my $db		=	DBI->connect("dbi:SQLite:dbname=$dbfile", undef, undef);
 
